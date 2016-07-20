@@ -1,0 +1,32 @@
+#navigation-tree {
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    cursor: pointer;
+  }
+
+  li ul li:first-child {
+    color: green;
+    margin-top: 5px;
+  }
+  a {
+    color: black;
+  }
+  a:hover, .selected {
+    color: #00abff;
+  }
+}
+#navigation-tree>ul>li>span.tree-name {
+  font-weight: bold;
+}
+
+.tree-expander:before {
+  content: "+";
+}
+
+.tree-opened:before {
+  content: "-" !important;
+}
+

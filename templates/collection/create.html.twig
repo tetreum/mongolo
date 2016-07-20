@@ -1,0 +1,16 @@
+{% extends isAjax ? "common/ajaxbase.html.twig" : "common/base.html.twig" %}
+
+{% block content %}
+    <h2>{% trans %}New collection{% endtrans %}</h2>
+    <form id="new-collection-form" method="post">
+        <label>{% trans %}Name{% endtrans %}: <input name="name" type="text" required></label>
+        <button>{% trans %}Create{% endtrans %}</button>
+    </form>
+{% endblock %}
+{% block bottomJS %}
+    <script>
+        $(function() {
+            mongolo.collection.createPageInit();
+        });
+    </script>
+{% endblock %}

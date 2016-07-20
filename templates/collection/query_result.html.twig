@@ -1,0 +1,8 @@
+{% if results|length > 0 %}
+<div class="pagination">
+    <a href="#">1</a> <a href="#">2</a> <a href="#">4</a> <a href="#">20</a> (25/{{ results|length }})
+</div>
+{% endif %}
+{% for entry in results %}
+    {% include 'collection/single_result.html.twig' with {entry: entry} %}
+{% endfor %}

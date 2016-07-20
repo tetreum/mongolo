@@ -1,0 +1,86 @@
+{% extends isAjax ? "common/ajaxbase.html.twig" : "common/base.html.twig" %}
+
+{% block content %}
+    <ul class="collection-menu">
+        <li><a href="{{ path_for('collectionIndexes') }}?db={{ db }}&collection={{ collection }}">{% trans %}Indexes{% endtrans %}</a></li>
+        <li>{% trans %}Import{% endtrans %}</li>
+        <li>{% trans %}Export{% endtrans %}</li>
+        <li class="red-link" data-action="drop-collection">{% trans %}Drop{% endtrans %}</li>
+        <li class="red-link" data-action="delete-collection">{% trans %}Delete{% endtrans %}</li>
+    </ul>
+    <hr>
+    <div class="clearfix">
+        <form id="query-form">
+            <div class="box">
+                <label>
+                    {% trans %}Query{% endtrans %}:
+                    <!-- DO NOT REMOVE THIS TEXTAREA NEWLINES, DONT ADD SPACES-->
+                <textarea id="query-code">{
+
+
+
+
+
+
+}</textarea>
+                </label>
+                <label id="changes-query-container">
+                    {% trans %}Changes{% endtrans %}:
+                    <textarea id="changes-query">{
+    "$set": {
+
+
+
+
+    }
+}</textarea>
+                </label>
+                <div class="query-options">
+                    <label>
+                        {% trans %}Action{% endtrans %}:
+                        <select name="action">
+                            <option value="find" selected>{% trans %}find{% endtrans %}</option>
+                            <option value="modify">{% trans %}modify{% endtrans %}</option>
+                            <option value="remove">{% trans %}remove{% endtrans %}</option>
+                            <option value="insert">{% trans %}insert{% endtrans %}</option>
+                        </select>
+                    </label>
+                    <label>
+                        {% trans %}Rows{% endtrans %}:
+                        <select name="limit">
+                            <option value="25" selected="selected">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </label>
+                    <button>{% trans %}Send{% endtrans %}</button>
+                </div>
+            </div>
+            <div class="box">
+                <h3>{% trans %}Sort by{% endtrans %}:</h3>
+                <div>
+                    <input name="sort[]" value="_id" type="text"> <select name="order[]"><option value="1">asc</option><option value="-1">desc</option></select>
+                </div>
+                <div>
+                    <input name="sort[]" type="text"> <select name="order[]"><option value="1">asc</option><option value="-1">desc</option></select>
+                </div>
+                <div>
+                    <input name="sort[]" type="text"> <select name="order[]"><option value="1">asc</option><option value="-1">desc</option></select>
+                </div>
+                <div>
+                    <input name="sort[]" type="text"> <select name="order[]"><option value="1">asc</option><option value="-1">desc</option></select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="query-results">
+        {% include 'collection/query_result.html.twig' with {results: results} %}
+    </div>
+{% endblock %}
+{% block bottomJS %}
+    <script>
+        $(function() {
+            mongolo.collection.init({{ autocompleteFields|json_encode|raw }});
+        });
+    </script>
+{% endblock %}

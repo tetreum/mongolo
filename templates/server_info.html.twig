@@ -1,0 +1,20 @@
+{% extends isAjax ? "common/ajaxbase.html.twig" : "common/base.html.twig" %}
+
+{% block content %}
+    <div>
+        <h2>Mongo.lo info</h2>
+        <ul>
+            <li><strong>Your version:</strong> {{ mongoloInfo.current }}</li>
+            <li><strong>Latest version:</strong> {{ mongoloInfo.latest.version }}</li>
+        </ul>
+        {% if mongoloInfo.latest.version == mongoloInfo.current %}
+            All up to date.
+        {% elseif mongoloInfo.latest.version != "failed to fetch" and mongoloInfo.latest.version != mongoloInfo.current %}
+            {% if mongoloInfo.latest.critical %}
+                <a href="https://github.com/tetreum/mongolo/releases/tag/v{{ mongoloInfo.latest.version }}" class="red-link" target="_blank">WARNING: CRITICAL (SEC) UPDATE</a>
+            {% else %}
+                <a href="https://github.com/tetreum/mongolo/releases/tag/v{{ mongoloInfo.latest.version }}" target="_blank">Newer version available: Bugfixes + new features</a>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
