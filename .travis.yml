@@ -1,0 +1,24 @@
+language: php
+php:
+- '7.0'
+node_js:
+- '0.10'
+before_install:
+- echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+- gem install sass
+- npm install
+install:
+- composer install --no-dev
+- grunt
+script: 
+- tar cvzf /tmp/mongolo.tar.gz . --exclude='.sass-cache' --exclude='node_modules' --exclude='.travis.yml' --exclude='.git' --exclude='screenshots'
+deploy:
+  provider: releases
+  api_key:
+    secure: s3aZSwezmbFEsqS5Nes6qx0Uwh64uRndTQmslK5WQrWBktnZg/myewsY/hLzmmQAO8JKx7rZ+/HO/WslVylt11HbUj3OTJiKT9Z1/kCYSTCL0lBsORwBEUB9h0J2zsEBV68ouFXPTrFhaqsj29EkMmmthnlI05BGRBafojXhDhZYSFx477V7MvcPeV0E2DxK9OYSHgLALoP3VJTq7e7ifDZ3TCMUskvvl6dX2oopP3LkDdV+LDWKhDFn88mE3VEDTjDwD8D27txbdWaDY9W9ebW570T3pOQlyKcbMd04tdiU9Q5GuyQp7jOWD0Jy+47HS78tj2qEsAVKUxMcMsQw3sGbcmRH+Rg5fwtKRf7EKa5TGl0t1+SPcajg11w1Za0acZEGFMkoNKcFOGVS3HUNm/XP6jzf/1yPuhc63gTOIoTrfvzBvZFh6TgmYc0w7/3AwiFaidvpN6S8wOf5lDOh6YuTvjncnMLJYRnEM4lInV12b1606muU+UskfS7uNI2Ep5CR1nEl0t+xX4tb7y//INF2Dj9ThvC7OlrUGmgWcWcoV4XE4Dyqf1NtIB9L9C9Mw9sXx77ahNl3/2sN1RlBmu7onmOIz5/ogRCYiWet3F6IPyGX0UDI4D6YOYax60HApjwSw2t9HH+v7mg6RWMcJA4PefsLUCqGzPNSpqHL51U=
+  file: /tmp/mongolo.tar.gz
+  on:
+    repo: tetreum/mongolo
+    branch: master
+after_deploy:
+- "echo 'deployed!'"
