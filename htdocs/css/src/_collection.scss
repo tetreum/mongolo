@@ -111,12 +111,16 @@
 }
 .collection-menu {
   list-style-type: none;
+  padding-bottom: .5em;
+  border-bottom: 1px solid #DCDCDD;
+  margin-bottom: .5em;
 
   li {
     display: inline-block;
   }
   li:not(:first-child):before {
     content: "| ";
+    color: #dcdcdd;
   }
 }
 
