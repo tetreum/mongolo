@@ -12,6 +12,7 @@ My RockMongo replacement.
 - Asks for confirmation before any delete action
 - Supports all mongo index types
 - Saves latest executed query
+- Unique URLs for each collection
 - Uses the newest mongo driver for php (mongodb)
 
 ## Requirements
