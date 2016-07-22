@@ -3,6 +3,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL & ~E_NOTICE);
 
+define('APP_ROOT', __DIR__ . DIRECTORY_SEPARATOR);
+
 $currentDomain = "mongo.dev";
 
 return [
