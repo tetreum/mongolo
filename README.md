@@ -4,7 +4,7 @@ BETA|EARLY ACCESS|WIP
 
 My RockMongo replacement.
 
-![mongolo](https://raw.githubusercontent.com/tetreum/mongolo/master/screenshots/1.jpg)
+![mongolo](https://raw.githubusercontent.com/tetreum/mongolo/master/screenshots/screenshot.png)
 
 ## Features
 - Field autocomplete when writing queries
