@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL & ~E_NOTICE);
 
-$currentDomain = "mongo.dev";
+define('APP_ROOT', __DIR__ . DIRECTORY_SEPARATOR);
 
 return [
     /*
@@ -29,5 +29,5 @@ return [
     'cookies.cipher' => MCRYPT_RIJNDAEL_256,
     'cookies.cipher_mode' => MCRYPT_MODE_CBC,
     'cookies.path' => '/',
-    'cookies.domain' => '.' . $currentDomain,
+    'cookies.domain' => "localhost",
 ];

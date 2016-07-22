@@ -5,8 +5,8 @@
         <li><a href="{{ path_for('collectionIndexes') }}?db={{ db }}&collection={{ collection }}">{% trans %}Indexes{% endtrans %}</a></li>
         <li>{% trans %}Import{% endtrans %}</li>
         <li>{% trans %}Export{% endtrans %}</li>
+        <li class="red-link" data-action="truncate-collection">{% trans %}Truncate{% endtrans %}</li>
         <li class="red-link" data-action="drop-collection">{% trans %}Drop{% endtrans %}</li>
-        <li class="red-link" data-action="delete-collection">{% trans %}Delete{% endtrans %}</li>
     </ul>
     <hr>
     <div class="clearfix">

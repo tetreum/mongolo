@@ -65,18 +65,28 @@ class Collection extends Controller
 
     /**
      * Delete collection
+     *
      * @return bool
      * @throws AppException
      */
-    public function delete ()
+    public function drop ()
     {
         $result = $this->selectCollection()->drop();
 
-        if ($result && $result["ok"]) {
-            return true;
-        }
+        return  ($result && $result["ok"]);
+    }
 
-        return false;
+    /**
+     * Deletes all entries without removing the collection
+     *
+     * @return bool
+     * @throws AppException
+     */
+    public function truncate ()
+    {
+        $result = $this->selectCollection()->deleteMany([]);
+
+        return $result->isAcknowledged();
     }
 
     public function createIndex () {
