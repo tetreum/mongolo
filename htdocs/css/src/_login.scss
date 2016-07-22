@@ -1,0 +1,31 @@
+#login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#login-container {
+    text-align: center;
+    display: inline-block;
+    margin-top: 10vh;
+}
+
+#login-container input {
+    display: block;
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+#login-container .error {
+    display: none;
+}
+
+.logo {
+    margin-top: 10vh;
+    text-align: center;
+}
+
+.error {
+    color: red;
+}

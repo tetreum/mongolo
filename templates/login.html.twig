@@ -2,43 +2,20 @@
 {% extends isAjax ? "common/ajaxbase.html.twig" : "common/base.html.twig" %}
 
 {% block content %}
-<style>
-    #login-container {
-        text-align: center;
-        display: inline-block;
-        margin-left: 45vw;
-        margin-top: 10vh;
-    }
-    #login-container input {
-        display: block;
-        margin-bottom: 10px;
-        height: 30px;
-    }
-    #login-container .error {
-        display: none;
-    }
-
-    .logo {
-        color: #DCDCDD;
-        margin-top: 10vh;
-        text-align: center;
-    }
-    .error {
-        color: red;
-    }
-</style>
-
-<h1 class="logo">Mongo.lo</h1>
-<div id="login-container" class="box">
-    <form method="post">
-        <h2>{% trans %}Welcome{% endtrans %}</h2>
-        <input name="username" type="text" placeholder=" username" required>
-        <input name="password" type="password" placeholder=" *******" required>
-        <button>{% trans %}Login{% endtrans %}</button>
-        <div class="error">{% trans %}Unauthorized{% endtrans %}</div>
-    </form>
-</div>
+    <div id="login-wrapper">
+        <h1 class="logo">Mongo.lo</h1>
+        <div id="login-container" class="box">
+            <form method="post">
+                <h3>{% trans %}Welcome{% endtrans %}</h3>
+                <input name="username" type="text" placeholder="{% trans %}username{% endtrans %}" required>
+                <input name="password" type="password" placeholder="*******" required>
+                <button>{% trans %}Login{% endtrans %}</button>
+                <div class="error">{% trans %}Unauthorized{% endtrans %}</div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
+
 {% block bottomJS %}
     <script>
         $(function () {
