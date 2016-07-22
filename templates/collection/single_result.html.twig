@@ -1,10 +1,10 @@
 <div class="result" id="document-{{ entry.id }}">
     <div class="options">
         <ul data-id="{{ entry.id }}">
-            <li data-action="expand"><img title="{% trans %}Expand{% endtrans %}" src="/images/icons/expand.png"></li>
-            <li data-action="edit"><img title="{% trans %}Toggle document edition{% endtrans %}" src="/images/icons/edit.png"></li>
-            <li data-action="refresh"><img title="{% trans %}Refresh{% endtrans %}" src="/images/icons/refresh.png"></li>
-            <li data-action="delete"><img title="{% trans %}Delete{% endtrans %}" src="/images/icons/delete.png"></li>
+            <li data-action="expand"><i title="{% trans %}Expand{% endtrans %}" class="fa fa-arrows-alt"></i></li>
+            <li data-action="edit"><i title="{% trans %}Toggle document edition{% endtrans %}" class="fa fa-pencil"></i></li>
+            <li data-action="refresh"><i title="{% trans %}Refresh{% endtrans %}" class="fa fa-refresh"></i></li>
+            <li data-action="delete"><i title="{% trans %}Delete{% endtrans %}" class="fa fa-trash"></i></li>
             <li data-action="save" style="display: none;"><button>{% trans %}Save{% endtrans %}</button></li>
         </ul>
     </div>

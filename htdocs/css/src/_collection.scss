@@ -62,14 +62,14 @@
   }
   .options ul {
     list-style-type: none;
-    margin: 0;
-    margin-bottom: 5px;
+    margin: 0 0 5px;
   }
 
   .options li {
     cursor: pointer;
     display: inline-block;
     margin-right: 10px;
+    color: #555;
   }
 
   .CodeMirror {
