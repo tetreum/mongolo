@@ -25,7 +25,6 @@ mongolo.login = function ()
                     return false;
                 }
 
-                console.log("redirect", $_GET("redirect"));
                 if ($_GET("redirect") === undefined) {
                     mongolo.navigation.redirect("home");
                 } else {
