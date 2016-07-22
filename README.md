@@ -4,13 +4,15 @@ BETA|EARLY ACCESS|WIP
 
 My RockMongo replacement.
 
-![mongolo](https://raw.githubusercontent.com/tetreum/mongolo/master/screenshots/1.jpg)
+![mongolo](https://raw.githubusercontent.com/tetreum/mongolo/master/screenshots/screenshot.png)
 
 ## Features
-- For queries: field autocomplete
+- Field autocomplete when writing queries
+- A more relaxed JSON syntax for queries ([HJSON](https://hjson.org/))
 - Asks for confirmation before any delete action
 - Supports all mongo index types
 - Saves latest executed query
+- Unique URLs for each collection
 - Uses the newest mongo driver for php (mongodb)
 
 ## Requirements
