@@ -1,40 +1,48 @@
 {% block dualColumn %}
-<div id="left-column">
-    <h2>Mongo.lo</h2>
-    <div id="menu">
-        <a href="/" title="{% trans %}Home{% endtrans %}"><img src="/images/icons/home.png"></a>
-        <a href="#" title="{% trans %}Config{% endtrans %}"><img src="/images/icons/config.png"></a>
-        <a href="http://github.com/tetreum/mongolo/wiki" target="_blank" data-noajax title="{% trans %}Help{% endtrans %}"><img src="/images/icons/help.png"></a>
-        <a href="{{ path_for('logout') }}" data-noajax title="{% trans %}Logout{% endtrans %}"><img src="/images/icons/logout.png"></a>
+    <div id="wrapper">
+        <div id="left-column">
+            <h2>Mongo.lo</h2>
+            <div id="menu">
+                <a href="/" title="{% trans %}Home{% endtrans %}"><img src="/images/icons/home.png"></a>
+                <a href="#" title="{% trans %}Config{% endtrans %}"><img src="/images/icons/config.png"></a>
+                <a href="http://github.com/tetreum/mongolo/wiki" target="_blank" data-noajax title="{% trans %}Help{% endtrans %}"><img src="/images/icons/help.png"></a>
+                <a href="{{ path_for('logout') }}" data-noajax title="{% trans %}Logout{% endtrans %}"><img src="/images/icons/logout.png"></a>
+            </div>
+            <div id="navigation-tree">
+                <ul>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main-container">
+            {{ block('content') }}
+        </div>
     </div>
-    <div id="navigation-tree">
-        <ul>
-        </ul>
-    </div>
-</div>
-<div id="main-container">
-    {{ block('content') }}
-</div>
-<template id="tpl-tree-db">
-    <li data-type="db">
-        <span class="tree-expander"></span>
-        <span class="tree-name"></span>
-        <ul style="display: none">
-            <li data-action="new-collection">
-                <a href="{{ path_for('collectionCreate') }}">
-                    <img src="/images/icons/new-collection.png">
-                    {% trans %}New collection{% endtrans %}
-                </a>
-            </li>
-        </ul>
-    </li>
-</template>
-<template id="tpl-tree-collection">
-    <li data-type="collection">
-        <a href="{{ path_for('collectionEntries') }}">
-            <img src="/images/icons/collection.png">
+
+
+    <template id="tpl-tree-db">
+        <li data-type="db">
+            <span class="tree-expander"></span>
             <span class="tree-name"></span>
-        </a>
-    </li>
-</template>
+            <ul style="display: none">
+                <li data-action="new-collection">
+                    <a href="{{ path_for('collectionCreate') }}">
+                        <img src="/images/icons/new-collection.png">
+                        {% trans %}New collection{% endtrans %}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </template>
+
+    <template id="tpl-tree-collection">
+        <li data-type="collection">
+            <a href="{{ path_for('collectionEntries') }}">
+                <img src="/images/icons/collection.png">
+                <span class="tree-name"></span>
+            </a>
+        </li>
+    </template>
+
+
 {% endblock %}

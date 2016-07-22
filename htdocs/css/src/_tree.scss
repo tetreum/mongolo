@@ -1,23 +1,31 @@
 #navigation-tree {
+  margin-top: 1em;
+  white-space: nowrap;
+
   ul {
+    padding: 0 0 0 1em;
     list-style-type: none;
   }
 
   li {
     cursor: pointer;
+      margin-bottom: .3em;
   }
 
   li ul li:first-child {
     color: green;
     margin-top: 5px;
   }
+
   a {
     color: black;
   }
+
   a:hover, .selected {
     color: #00abff;
   }
 }
+
 #navigation-tree>ul>li>span.tree-name {
   font-weight: bold;
 }

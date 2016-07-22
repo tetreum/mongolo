@@ -1,27 +1,28 @@
+.clearfix {
+  overflow: auto;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
 body {
-  font-family: Lato, sans-serif;
   background: #eff0f1;
 }
-#main-container {
-  width: 70%;
-  float: left;
-  margin-left: 10px;
-}
-#left-column {
-  border-right: 2px solid #DCDCDD;
-  height: 1000px;
-  width: 20%;
-  float: left;
-  overflow: scroll;
-}
+
 #left-column h2{
   text-align: center;
-  color: #DCDCDD;
   user-select: none;
 }
+
 #menu {
   text-align: center;
 }
+
 #menu img {
   padding-left: 10px;
 }
@@ -31,28 +32,36 @@ body {
   background: #e2e2e2;
   padding: 10px;
 }
+
 #global-loader {
   display: none;
-}
-
-.clearfix {
-  overflow: auto;
-}
-a {
-  text-decoration: none;
-  color: #00abff;
-}
-#global-loader {
-  right: 0;
+  height: 4px;
+  width: 100%;
+  position: fixed;
   top: 0;
-  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: #ddd;
 
-  img {
-    width: 40px;
+  &:before{
+    display: block;
+    position: absolute;
+    content: "";
+    left: -200px;
+    width: 200px;
+    height: 4px;
+    background-color: #2980b9;
+    animation: loading 1s linear infinite;
   }
 }
 
-.red-link {
-  color: #ea4343;
-  cursor: pointer;
+
+@keyframes loading {
+  from {left: -200px; width: 30%;}
+  50% {width: 30%;}
+  70% {width: 70%;}
+  80% { left: 50%;}
+  95% {left: 120%;}
+  to {left: 100%;}
 }

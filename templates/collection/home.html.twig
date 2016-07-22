@@ -10,12 +10,12 @@
     </ul>
     <hr>
     <div class="clearfix">
-        <form id="query-form">
-            <div class="box">
-                <label>
-                    {% trans %}Query{% endtrans %}:
+        <form id="query-form" class="box">
+            <div id="query-controls">
+                <h3><label for="query-code">{% trans %}Query{% endtrans %}:</label></h3>
+
                     <!-- DO NOT REMOVE THIS TEXTAREA NEWLINES, DONT ADD SPACES-->
-                <textarea id="query-code">{
+            <textarea id="query-code">{
 
 
 
@@ -23,52 +23,76 @@
 
 
 }</textarea>
-                </label>
+
                 <label id="changes-query-container">
                     {% trans %}Changes{% endtrans %}:
-                    <textarea id="changes-query">{
-    "$set": {
+                <textarea id="changes-query">{
+"$set": {
 
 
 
 
-    }
+}
 }</textarea>
                 </label>
                 <div class="query-options">
-                    <label>
+                    <label for="query-action">
                         {% trans %}Action{% endtrans %}:
-                        <select name="action">
-                            <option value="find" selected>{% trans %}find{% endtrans %}</option>
-                            <option value="modify">{% trans %}modify{% endtrans %}</option>
-                            <option value="remove">{% trans %}remove{% endtrans %}</option>
-                            <option value="insert">{% trans %}insert{% endtrans %}</option>
-                        </select>
                     </label>
-                    <label>
+
+                    <select id="query-action" name="action">
+                        <option value="find" selected>{% trans %}Find{% endtrans %}</option>
+                        <option value="modify">{% trans %}Modify{% endtrans %}</option>
+                        <option value="remove">{% trans %}Remove{% endtrans %}</option>
+                        <option value="insert">{% trans %}Insert{% endtrans %}</option>
+                    </select>
+
+                    <label for="query-limit">
                         {% trans %}Rows{% endtrans %}:
-                        <select name="limit">
-                            <option value="25" selected="selected">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
                     </label>
+
+                    <select id="query-limit"  name="limit">
+                        <option value="25" selected="selected">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+
                     <button>{% trans %}Send{% endtrans %}</button>
                 </div>
             </div>
-            <div class="box">
+
+            <div id="sort-controls">
                 <h3>{% trans %}Sort by{% endtrans %}:</h3>
-                <div>
-                    <input name="sort[]" value="_id" type="text"> <select name="order[]"><option value="1">asc</option><option value="-1">desc</option></select>
-                </div>
-                <div>
-                    <input name="sort[]" type="text"> <select name="order[]"><option value="1">asc</option><option value="-1">desc</option></select>
-                </div>
-                <div>
-                    <input name="sort[]" type="text"> <select name="order[]"><option value="1">asc</option><option value="-1">desc</option></select>
-                </div>
-                <div>
-                    <input name="sort[]" type="text"> <select name="order[]"><option value="1">asc</option><option value="-1">desc</option></select>
+
+                <div id="sort-list">
+                    <div class="sort-group">
+                        <input class="sort-field" name="sort[]" value="_id" type="text">
+                        <select class="sort-mode" name="order[]">
+                            <option value="1">asc</option>
+                            <option selected value="-1">desc</option>
+                        </select>
+                    </div>
+                    <div class="sort-group">
+                        <input class="sort-field" name="sort[]" type="text">
+                        <select class="sort-mode" name="order[]">
+                            <option value="1">asc</option>
+                            <option value="-1">desc</option>
+                        </select>
+                    </div>
+                    <div class="sort-group">
+                        <input class="sort-field" name="sort[]" type="text">
+                        <select class="sort-mode" name="order[]">
+                            <option value="1">asc</option>
+                            <option value="-1">desc</option>
+                        </select>
+                    </div>
+                    <div class="sort-group">
+                        <input class="sort-field" name="sort[]" type="text">
+                        <select class="sort-mode" name="order[]">
+                            <option value="1">asc</option>
+                            <option value="-1">desc</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </form>
