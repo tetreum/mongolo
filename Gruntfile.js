@@ -14,6 +14,9 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'htdocs/css/main.css': 'htdocs/css/src/main.scss'
+                },
+                options: {
+                    lineNumbers: true
                 }
             }
         },
