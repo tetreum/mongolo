@@ -5,8 +5,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 define('APP_ROOT', __DIR__ . DIRECTORY_SEPARATOR);
 
-$currentDomain = "mongo.dev";
-
 return [
     /*
     // Enable if mongo hasnt any password set
@@ -17,7 +15,7 @@ return [
         ],
     ],*/
     "mongo" => [
-        "ip" => "MONGO_IP",
+        "ip" => "MONGO_IP", // CHANGE ME!
         "options" => [
             "connectTimeoutMS" => 150,
             "connect" => false,
@@ -31,5 +29,5 @@ return [
     'cookies.cipher' => MCRYPT_RIJNDAEL_256,
     'cookies.cipher_mode' => MCRYPT_MODE_CBC,
     'cookies.path' => '/',
-    'cookies.domain' => '.' . $currentDomain,
+    'cookies.domain' => "mongo.dev", // CHANGE ME!
 ];

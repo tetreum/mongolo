@@ -99,30 +99,31 @@ mongolo.collection = function ()
             }
         });
 
-        $('.collection-menu').on("click", '[data-action="delete-collection"]', function ()
+        $('.collection-menu').on("click", '[data-action="truncate-collection"]', function ()
         {
-            mongolo.navigation.showConfirm("¿Do you want to <strong>DELETE</strong> this collection?", function ()
+            mongolo.navigation.showConfirm("¿Do you want to <strong>TRUNCATE</strong> this collection?", function ()
             {
-                var db = $_GET("db");
-
-                mongolo.api("collection/delete", {db: db, collection: $_GET("collection")}, function (data) {
+                mongolo.api("collection/truncate", {db: $_GET("db"), collection: $_GET("collection")}, function (data) {
                     if (data.error > 0) {
                         return false;
                     }
-                    mongolo.tree.refresh(db);
-                    mongolo.navigation.browse("/");
+
+                    mongolo.navigation.reload();
                 });
             });
         }).on("click", '[data-action="drop-collection"]', function ()
         {
             mongolo.navigation.showConfirm("¿Do you want to <strong>DROP</strong> this collection?", function ()
             {
-                mongolo.api("collection/drop", {db: $_GET("db"), collection: $_GET("collection")}, function (data) {
+                var db = $_GET("db");
+
+                mongolo.api("collection/drop", {db: db, collection: $_GET("collection")}, function (data) {
                     if (data.error > 0) {
                         return false;
                     }
-                    // reload page
-                    mongolo.navigation.browse(location.pathname + location.search);
+
+                    mongolo.tree.refresh(db);
+                    mongolo.navigation.browse("/");
                 });
             });
         });
@@ -229,7 +230,12 @@ mongolo.collection = function ()
             switch (params.action) {
                 case "insert":
                     var $html = $(html);
-                    $("#query-results .pagination").after($html);
+
+                    if ($("#query-results .pagination").length > 0) {
+                        $("#query-results .pagination").after($html);
+                    } else {
+                        $("#query-results").prepend($html);
+                    }
                     setResultListeners($html);
                     break;
                 case "modify":

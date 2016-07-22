@@ -130,7 +130,12 @@ mongolo.navigation = function ()
         mongolo.tree.getCollection(db, collection).find("a").click();
     };
 
+    var reload = function () {
+        location.reload();
+    };
+
     return {
+        reload: reload,
         showLoader: showLoader,
         hideLoader: hideLoader,
         redirect: redirect,
