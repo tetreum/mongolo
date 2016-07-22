@@ -15,7 +15,7 @@ return [
         ],
     ],*/
     "mongo" => [
-        "ip" => "MONGO_IP",
+        "ip" => "MONGO_IP", // CHANGE ME!
         "options" => [
             "connectTimeoutMS" => 150,
             "connect" => false,
@@ -29,5 +29,5 @@ return [
     'cookies.cipher' => MCRYPT_RIJNDAEL_256,
     'cookies.cipher_mode' => MCRYPT_MODE_CBC,
     'cookies.path' => '/',
-    'cookies.domain' => "localhost",
+    'cookies.domain' => "mongo.dev", // CHANGE ME!
 ];
