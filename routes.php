@@ -88,9 +88,9 @@ $app->group('/api', function () use ($app)
             $ct->json('rename');
         });
 
-        $app->post('/delete', function($request, $response, $args) use ($app) {
+        $app->post('/truncate', function($request, $response, $args) use ($app) {
             $ct = new Collection($app, $response);
-            $ct->json('delete');
+            $ct->json('truncate');
         });
 
         $app->post('/drop', function($request, $response, $args) use ($app) {

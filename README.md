@@ -4,13 +4,15 @@ BETA|EARLY ACCESS|WIP
 
 My RockMongo replacement.
 
-![mongolo](https://raw.githubusercontent.com/tetreum/mongolo/master/screenshots/1.jpg)
+![mongolo](https://raw.githubusercontent.com/tetreum/mongolo/master/screenshots/screenshot.png)
 
 ## Features
-- For queries: field autocomplete
+- Field autocomplete when writing queries
+- A more relaxed JSON syntax for queries ([HJSON](https://hjson.org/))
 - Asks for confirmation before any delete action
 - Supports all mongo index types
 - Saves latest executed query
+- Unique URLs for each collection
 - Uses the newest mongo driver for php (mongodb)
 
 ## Requirements
@@ -68,6 +70,27 @@ server {
         deny  all;
     }
 }
+```
+
+Apache example:
+```
+<VirtualHost *:80>
+        DocumentRoot /var/www/mongolo/htdocs
+        ServerName mongo.dev
+        CustomLog /var/log/apache2/mongolo.access.log Combined
+        ErrorLog /var/log/apache2/monoglo.error.log
+        DirectoryIndex index.php
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride All
+        </Directory>
+        <Directory /var/www/mongolo/htdocs>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+        </Directory>
+</VirtualHost>
 ```
  
 4. Move conf.sample.php to conf.php: ```cd /var/www/mongolo && mv conf.sample.php conf.php```

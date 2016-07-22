@@ -1,0 +1,51 @@
+input[type=text],
+input[type=button],
+input[type=submit],
+input[type=password],
+button,
+select {
+    padding: 8px 10px;
+    border-radius: 3px;
+    background-color: white;
+    color: #333;
+    font-size: 1em;
+    border: none;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    box-sizing: border-box;
+    height: 2.2em;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    user-select: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+    letter-spacing: 0;
+    background-color: #25a6d9;
+    color: white;
+
+    &:hover {
+        background-color: #2abbf4;
+    }
+    &:focus {
+        outline: 0;
+    }
+    &:active {
+        color: blue;
+        background-color: #25a6d9;
+        transition: none;
+        opacity: 0.2;
+    }
+    &:disabled,
+    &[disabled] {
+        opacity: 0.3;
+        cursor: default;
+        pointer-events: none;
+    }
+}

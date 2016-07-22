@@ -65,18 +65,28 @@ class Collection extends Controller
 
     /**
      * Delete collection
+     *
      * @return bool
      * @throws AppException
      */
-    public function delete ()
+    public function drop ()
     {
         $result = $this->selectCollection()->drop();
 
-        if ($result && $result["ok"]) {
-            return true;
-        }
+        return  ($result && $result["ok"]);
+    }
 
-        return false;
+    /**
+     * Deletes all entries without removing the collection
+     *
+     * @return bool
+     * @throws AppException
+     */
+    public function truncate ()
+    {
+        $result = $this->selectCollection()->deleteMany([]);
+
+        return $result->isAcknowledged();
     }
 
     public function createIndex () {
@@ -195,6 +205,10 @@ class Collection extends Controller
         $options = [
             "limit" => $limit,
         ];
+        
+        if (empty($sort)) {
+            $sort = ["_id" => -1];
+        }
 
         if (is_array($sort)) {
             foreach ($sort as $k => &$v) {
