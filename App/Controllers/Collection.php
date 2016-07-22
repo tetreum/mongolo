@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\System\AppException;
 use App\System\Controller;
+use App\System\Pagination;
 
 class Collection extends Controller
 {
@@ -106,9 +107,10 @@ class Collection extends Controller
         if (isset($results[0])) {
             $sampleDocument = json_decode($results[0]["document"], true);
         }
-
+        
         return $this->render("collection/home.html.twig", [
-            "results" => $results,
+            "results" => $results['results'],
+            "pagination" => $results['pagination'],
             "db" => $_REQUEST["db"],
             "collection" => $_REQUEST["collection"],
             "autocompleteFields" => array_keys($sampleDocument)
@@ -175,9 +177,7 @@ class Collection extends Controller
                 break;
         }
 
-        return $this->render("collection/query_result.html.twig", [
-        "results" => $results
-        ]);
+        return $this->render("collection/query_result.html.twig", $results);
     }
 
     public function doQuery ()
@@ -232,8 +232,22 @@ class Collection extends Controller
             ];
         }
 
-        return $results;
+        $page = $page + 1;
+        $totalResults = $this->count($db, $collection, $query);
+        $pagination = new Pagination($page, $limit, $totalResults);
+
+        return [
+            'results' => $results,
+            'pagination' => [
+                'totalPages' => $pagination->totalPages(),
+                'currentPage' => $page,
+                'perPage' => $limit,
+                'totalResults' => $totalResults
+            ]
+        ];
     }
 
-
+    protected function count($db, $collection, $query) {
+        return $this->mongo->selectDB($db)->selectCollection($collection)->count($query);
+    }
 }
