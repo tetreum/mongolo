@@ -7,7 +7,8 @@ My RockMongo replacement.
 ![mongolo](https://raw.githubusercontent.com/tetreum/mongolo/master/screenshots/1.jpg)
 
 ## Features
-- For queries: field autocomplete
+- Field autocomplete when writing queries
+- A more relaxed JSON syntax for queries ([HJSON](https://hjson.org/))
 - Asks for confirmation before any delete action
 - Supports all mongo index types
 - Saves latest executed query
