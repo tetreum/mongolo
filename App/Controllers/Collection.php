@@ -205,6 +205,10 @@ class Collection extends Controller
         $options = [
             "limit" => $limit,
         ];
+        
+        if (empty($sort)) {
+            $sort = ["_id" => -1];
+        }
 
         if (is_array($sort)) {
             foreach ($sort as $k => &$v) {
