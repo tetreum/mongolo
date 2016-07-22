@@ -20,6 +20,6 @@ class AppException extends \Exception
 
     public function __construct($constant, $code = 0, \Exception $previous = null) {
 
-        parent::__construct(self::description[$constant], $constant, $previous);
+        parent::__construct(self::$description[$constant], $constant, $previous);
     }
 }
