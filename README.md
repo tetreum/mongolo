@@ -69,6 +69,27 @@ server {
     }
 }
 ```
+
+Apache example:
+```
+<VirtualHost *:80>
+        DocumentRoot /var/www/mongolo/htdocs
+        ServerName mongo.dev
+        CustomLog /var/log/apache2/mongolo.access.log Combined
+        ErrorLog /var/log/apache2/monoglo.error.log
+        DirectoryIndex index.php
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride All
+        </Directory>
+        <Directory /var/www/mongolo/htdocs>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+        </Directory>
+</VirtualHost>
+```
  
 4. Move conf.sample.php to conf.php: ```cd /var/www/mongolo && mv conf.sample.php conf.php```
 5. Edit conf.php
