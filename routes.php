@@ -116,5 +116,18 @@ $app->group('/api', function () use ($app)
             $ct->json('delete');
         });
     });
+
+    $app->group('/index', function () use ($app)
+    {
+        $app->post('/create', function($request, $response, $args) use ($app) {
+            $ct = new Index($app, $response);
+            $ct->json('create');
+        });
+
+        $app->post('/delete', function($request, $response, $args) use ($app) {
+            $ct = new Index($app, $response);
+            $ct->json('delete');
+        });
+    });
 })->add($ensureLogged);
 

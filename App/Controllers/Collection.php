@@ -73,7 +73,7 @@ class Collection extends Controller
     {
         $result = $this->selectCollection()->drop();
 
-        return  ($result && $result["ok"]);
+        return ($result && $result["ok"]);
     }
 
     /**
@@ -87,9 +87,6 @@ class Collection extends Controller
         $result = $this->selectCollection()->deleteMany([]);
 
         return $result->isAcknowledged();
-    }
-
-    public function createIndex () {
     }
 
     /**
@@ -176,7 +173,7 @@ class Collection extends Controller
         }
 
         return $this->render("collection/query_result.html.twig", [
-        "results" => $results
+            "results" => $results
         ]);
     }
 

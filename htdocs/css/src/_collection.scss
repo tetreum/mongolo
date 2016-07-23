@@ -141,6 +141,10 @@
   }
 }
 
+#changes-query-container {
+  display: none;
+}
+
 #create-index-form {
   margin-bottom: 5px;
   display: none;
@@ -148,7 +152,13 @@
   label {
     display: block;
   }
+
+  ul {
+    display: inline-block;
+    margin-top: 10px;
+  }
+  li {
+    margin-top: 5px;
+  }
 }
-#changes-query-container {
-  display: none;
-}
+
