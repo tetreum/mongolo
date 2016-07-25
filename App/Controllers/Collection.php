@@ -215,7 +215,7 @@ class Collection extends Controller
         }
 
         if ($page > 1) {
-            $options['skip'] = $page * $limit;
+            $options['skip'] = ($page - 1) * $limit;
         }
 
         $cursor = $this->mongo->find($db, $collection, $query, $options);
@@ -229,7 +229,6 @@ class Collection extends Controller
             ];
         }
 
-        $page = $page + 1;
         $totalResults = $this->count($db, $collection, $query);
         $pagination = new Pagination($page, $limit, $totalResults);
 
