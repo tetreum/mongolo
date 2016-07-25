@@ -8,19 +8,61 @@ use App\System\Controller;
 class Index extends Controller
 {
     /**
+     * https://docs.mongodb.com/manual/reference/command/createIndexes/
      * Create index
      * @throws AppException
      */
     public function create ()
     {
-        $json = (string)$_POST["index"];
+        $fields = $_POST["fields"];
+        $name = $_POST["name"];
+        $unique = $_POST["unique"];
+        $options = [];
 
-        if (empty($json)) {
+        if (empty($fields)) {
             throw new AppException(AppException::MISSING_PARAMS);
         }
-        $result = $this->selectCollection()->createIndex($json);
 
-        var_dump($result);die;
+        if (!empty($name)) {
+            $options["name"] = $name;
+        }
+
+        // only applies to ASC & DESC indexes
+        if (!empty($unique) && $unique == "true") {
+            $options["unique"] = $unique;
+        }
+
+        foreach ($fields as $k => &$v) {
+            if (is_numeric($v)) {
+                $v = (int)$v;
+            }
+        }
+
+        // OnSuccess: Will return the index name
+        // OnFail: An array
+        $result = $this->selectCollection()->createIndex($fields, $options);
+
+        if (is_string($result)) {
+            return true;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Delete index
+     */
+    public function delete ()
+    {
+        $name = $_POST["name"];
+
+        if (empty($name)) {
+            throw new AppException(AppException::MISSING_PARAMS);
+        }
+
+        $result = $this->selectCollection()->dropIndex($name);
+
+        return ($result && $result["ok"]);
     }
 
     /**
@@ -55,8 +97,17 @@ class Index extends Controller
             ];
         }
 
+        // get document keys
+        $document = $this->selectCollection()->findOne([]);
+        $keys = [];
+
+        if ($document && is_array($document)) {
+            $keys = array_keys($document);
+        }
+
         return $this->render('collection/index_list.html.twig', [
-            "indexes" => $list
+            "indexes" => $list,
+            "documentKeys" => $keys
         ]);
     }
 }

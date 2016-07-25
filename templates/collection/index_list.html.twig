@@ -1,33 +1,37 @@
 {% extends isAjax ? "common/ajaxbase.html.twig" : "common/base.html.twig" %}
 
 {% block content %}
-<h2>Index list</h2>
+<h2>{% trans %}Index list{% endtrans %}</h2>
 
-<button data-action="show-create-form">New</button>
+<button data-action="show-create-form">{% trans %}New{% endtrans %}</button>
 <div id="create-index-form" class="box">
     <form method="post">
-        <label>Name: <input name="name" type="text"></label>
-        Fields:
+        <label>{% trans %}Name{% endtrans %}: <input name="name" type="text"></label>
+        {% trans %}Fields{% endtrans %}:
         <ul>
         </ul>
         <button data-action="add-field">+</button>
-        <label>Unique: <input name="unique" type="checkbox"></label>
-        <button>Create</button>
+        <label>{% trans %}Unique{% endtrans %}: <input name="unique" type="checkbox"></label>
+        <button>{% trans %}Create{% endtrans %}</button>
     </form>
 </div>
 <table class="index-list">
   <tr>
-    <th>Name</th>
-    <th>Fields</th> 
-    <th>Type</th>
-    <th>Options</th>
+    <th>{% trans %}Name{% endtrans %}</th>
+    <th>{% trans %}Fields{% endtrans %}</th>
+    <th>{% trans %}Type{% endtrans %}</th>
+    <th>{% trans %}Options{% endtrans %}</th>
   </tr>
     {% for entry in indexes %}
   <tr>
     <td>{{ entry.name }}</td>
     <td><pre>{{ entry.fields }}</pre></td>
     <td>{{ entry.type }}</td>
-    <td><span class="red-link" data-action="delete">Delete</span></td>
+    <td>
+        {% if entry.name != "_id_" %}
+            <span class="red-link" data-name="{{ entry.name }}" data-action="delete">{% trans %}Delete{% endtrans %}</span>
+        {% endif %}
+    </td>
   </tr>
     {% endfor %}
 </table>
@@ -41,48 +45,7 @@
 {% block bottomJS %}
 <script>
     $(function() {
-        $('[data-action=show-create-form]').on("click", function () {
-            $('#create-index-form').show();
-        });
-        $('[data-action=add-field]').on("click", function () {
-            var $template = mongolo.utils.getTemplate("index-field");
-            $('#create-index-form ul').prepend($template);
-        });
-        $('[data-action=delete]').on("click", function () {
-            mongolo.navigation.showConfirm("¿Do you wanna delete this index?", function () {
-                mongolo.api("index/delete", {db: $_GET("db"), collection: $_GET("collection"), name: name}, function (data) {
-                    if (data.error > 0) {
-                        return false;
-                    }
-                    
-                });
-            });
-        });
-        $('#create-index-form form').on("submit", function (e)
-        {
-            e.preventDefault();
-
-            var name = $('[name=name]').val(),
-                sortList = $("[name='fields[]'"),
-                sortOrderList = $("[name='order[]'"),
-                unique = $('[name="unique"]').is(":checked"),
-                fields = {};
-
-                while (i < sortList.length) {
-                    var row = $(sortList[i]).val();
-                    if (row) {
-                        sort[row] = $(sortOrderList[i]).val();
-                    }
-                    i++;
-                }
-
-            mongolo.api("index/create", {db: $_GET("db"), collection: $_GET("collection"), name: name, fields: fields, unique: unique}, function (data) {
-                if (data.error > 0) {
-                    return false;
-                }
-                mongolo.navigation.reload();
-            });
-        });
+        mongolo.index.init();
     });
 </script>
 {% endblock %}

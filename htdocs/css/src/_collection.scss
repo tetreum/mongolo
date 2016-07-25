@@ -138,7 +138,12 @@
   th, td {
     border-bottom: 1px solid #b9b9b9;
     border-right: 1px solid #b9b9b9;
+    vertical-align: middle;
   }
+}
+
+#changes-query-container {
+  display: none;
 }
 
 #create-index-form {
@@ -148,7 +153,13 @@
   label {
     display: block;
   }
+
+  ul {
+    display: inline-block;
+    margin-top: 10px;
+  }
+  li {
+    margin-top: 5px;
+  }
 }
-#changes-query-container {
-  display: none;
-}
+
