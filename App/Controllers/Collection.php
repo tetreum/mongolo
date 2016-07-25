@@ -74,7 +74,7 @@ class Collection extends Controller
     {
         $result = $this->selectCollection()->drop();
 
-        return  ($result && $result["ok"]);
+        return ($result && $result["ok"]);
     }
 
     /**
@@ -88,9 +88,6 @@ class Collection extends Controller
         $result = $this->selectCollection()->deleteMany([]);
 
         return $result->isAcknowledged();
-    }
-
-    public function createIndex () {
     }
 
     /**
@@ -107,7 +104,7 @@ class Collection extends Controller
         if (isset($results[0])) {
             $sampleDocument = json_decode($results[0]["document"], true);
         }
-        
+
         return $this->render("collection/home.html.twig", [
             "results" => $results['results'],
             "pagination" => $results['pagination'],
