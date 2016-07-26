@@ -179,6 +179,16 @@ mongolo.collection = function ()
                      $('#document-' + id).remove();
                  });
              }
+        }).on("click", "[data-action=expand]", function () {
+            var $result = $(this).closest('.result'),
+                id = $(this).parent().data("id"),
+                $document = $('#document-' + id),
+                $editor = $document.find('.CodeMirror'),
+                codeMirror = $editor[0].CodeMirror;
+
+            $result.toggleClass('full-screen');
+            $('body').toggleClass('no-scroll');
+            codeMirror.refresh();
         }).on("click", "[data-action=refresh]", function () {
             var id = $(this).parent().data("id");
 
