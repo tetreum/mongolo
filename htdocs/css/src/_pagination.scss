@@ -1,0 +1,11 @@
+.pagination ul, .pagination ul li {
+  display: inline-block;
+}
+.pagination li {
+  color: $linkColor;
+  cursor: pointer;
+}
+
+.pagination .active {
+  color: red
+}

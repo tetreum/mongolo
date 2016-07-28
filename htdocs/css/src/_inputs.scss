@@ -33,15 +33,18 @@ button {
     &:hover {
         background-color: #2abbf4;
     }
+
     &:focus {
         outline: 0;
     }
+
     &:active {
         color: blue;
         background-color: #25a6d9;
         transition: none;
         opacity: 0.2;
     }
+
     &:disabled,
     &[disabled] {
         opacity: 0.3;

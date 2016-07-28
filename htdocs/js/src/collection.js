@@ -45,6 +45,7 @@ mongolo.collection = function ()
 
             var query = $form.find("#query-code").val(),
                 action = $form.find('[name=action]').val(),
+                page = $form.find('[name=page]').val(),
                 limit = $limitSelector.val(),
                 sortList = $("[name='sort[]'"),
                 sortOrderList = $("[name='order[]'"),
@@ -52,7 +53,7 @@ mongolo.collection = function ()
                 sort = {},
                 callback = function () {
                     sessionStorage.lastQuery = query;
-                    var params = {action: action, query: query, sort: sort, limit: limit};
+                    var params = {action: action, query: query, sort: sort, limit: limit, page: page};
 
                     if (action == "modify") {
                         params.changes_query = $changesQuery.val();
@@ -74,6 +75,8 @@ mongolo.collection = function ()
             } else {
                 callback();
             }
+        }).on("click", "button", function () { // reset page number if user is making a different query
+            $form.find('[name=page]').val(1);
         });
 
         // show/hide some filters depending on what user wants to do
@@ -176,6 +179,16 @@ mongolo.collection = function ()
                      $('#document-' + id).remove();
                  });
              }
+        }).on("click", "[data-action=expand]", function () {
+            var $result = $(this).closest('.result'),
+                id = $(this).parent().data("id"),
+                $document = $('#document-' + id),
+                $editor = $document.find('.CodeMirror'),
+                codeMirror = $editor[0].CodeMirror;
+
+            $result.toggleClass('full-screen');
+            $('body').toggleClass('no-scroll');
+            codeMirror.refresh();
         }).on("click", "[data-action=refresh]", function () {
             var id = $(this).parent().data("id");
 
@@ -211,6 +224,18 @@ mongolo.collection = function ()
                 // toggle edit mode
                 $document.find("[data-action=edit]").click();
             });
+        });
+
+        $('.pagination li').on("click", function () {
+            var page = $(this).data("page"),
+                $form = $("#query-form");
+
+            if (!page) {
+                return false;
+            }
+
+            $form.find("[name=page]").val(page);
+            $form.submit();
         });
 
         initResultsEditor($selector);

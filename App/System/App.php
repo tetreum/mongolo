@@ -11,7 +11,7 @@ use Slim\Slim;
  */
 class App
 {
-    const CURRENT_VERSION = "0.2";
+    const CURRENT_VERSION = "0.3";
 
     /**
      * @var \Slim\App
